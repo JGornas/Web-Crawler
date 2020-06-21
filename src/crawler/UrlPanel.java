@@ -1,8 +1,6 @@
 package crawler;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class UrlPanel extends JPanel {
 
@@ -11,11 +9,11 @@ public class UrlPanel extends JPanel {
 
     public UrlPanel(HtmlPanel htmlPanel) {
         textField.setName("UrlTextField");
-        textField.setColumns(20);
+        textField.setColumns(35);
         add(textField);
 
         button.setName("RunButton");
-        button.addActionListener(event -> htmlPanel.setTextArea(textField.getText()));
+        button.addActionListener(event -> HtmlDownloader.download(textField.getText(), htmlPanel));
         add(button);
     }
 }

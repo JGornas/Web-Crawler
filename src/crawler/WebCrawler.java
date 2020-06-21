@@ -7,12 +7,11 @@ public class WebCrawler extends JFrame {
     public WebCrawler() {
         super("Web Crawler");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(350, 550);
+        setSize(500, 660);
         setLocationRelativeTo(null);
         setLayout(new FlowLayout());
 
         HtmlPanel htmlPanel = new HtmlPanel();
-
         JPanel urlPanel = new UrlPanel(htmlPanel);
 
         add(urlPanel);

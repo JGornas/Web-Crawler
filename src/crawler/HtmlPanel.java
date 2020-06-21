@@ -1,18 +1,26 @@
 package crawler;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class HtmlPanel extends JPanel {
+
     JTextArea textArea = new JTextArea();
 
     public HtmlPanel() {
-        textArea.setText("HTML code?");
-        textArea.setColumns(27);
-        textArea.setRows(27);
-        textArea.setName("TextArea");
-        // textArea.setEnabled(false);
+        textArea.setColumns(45);
+        textArea.setRows(35);
+        textArea.setName("HtmlTextArea");
+        textArea.setEnabled(false);
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setDisabledTextColor(Color.black);
         add(textArea);
+
+        JScrollPane scroll = new JScrollPane (textArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(scroll);
+
         setVisible(true);
     }
 
