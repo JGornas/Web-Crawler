@@ -11,6 +11,8 @@ public class HtmlDownloader {
         try (InputStream inputStream = new BufferedInputStream(new URL(url).openStream())) {
             String siteText = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
             htmlPanel.setTextArea(siteText);
-        } catch (IOException ignore) {}
+        } catch (IOException e) {
+            htmlPanel.setTextArea("Invalid URL.");
+        }
     }
 }
