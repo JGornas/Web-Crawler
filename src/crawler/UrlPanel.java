@@ -2,6 +2,12 @@ package crawler;
 
 import javax.swing.*;
 
+/**
+ * Swing panel (top) containing:
+ * Text field for entering URL
+ * Button for running HtmlDownloader download method.
+ */
+
 public class UrlPanel extends JPanel {
 
     JTextField textField = new JTextField();

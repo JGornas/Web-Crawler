@@ -3,6 +3,12 @@ package crawler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Swing panel class containing:
+ * Text area for browsing html code.
+ * Set method to change the text.
+ */
+
 public class HtmlPanel extends JPanel {
 
     JTextArea textArea = new JTextArea();

@@ -3,6 +3,13 @@ package crawler;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Master window class containing:
+ * JFrame init with size, location and layout.
+ * HtmlPanel with large text area for html display.
+ * UrlPanel with text field and a button for entering URL.
+ */
+
 public class WebCrawler extends JFrame {
     public WebCrawler() {
         super("Web Crawler");
