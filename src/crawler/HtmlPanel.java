@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Swing panel class containing:
- * Text area for browsing html code.
- * Set method to change the text.
+ * Swing panel (bottom) containing:
+ * Large text area for browsing html code.
+ * Set method to change the text inside it.
  */
-
 public class HtmlPanel extends JPanel {
 
     JTextArea textArea = new JTextArea();
