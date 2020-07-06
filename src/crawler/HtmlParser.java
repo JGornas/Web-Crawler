@@ -1,7 +1,9 @@
 package crawler;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,27 +24,36 @@ public class HtmlParser {
         }
     }
 
-    public static List<String> getLinks(String html, String url) {
-        List<String> linksList = new ArrayList<>();
-
+    /** Parses all urls from a website.
+     *
+     * @param html Html code string.
+     * @param url Url from UrlPanel.
+     * @return String array of parsed urls.
+     */
+    public static String[] getUrls(String html, String url) {
+        Set<String> urlList = new HashSet<>();
         Pattern pattern = Pattern.compile(
-              //  "(//)(([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?)",
                 "(<a href=\"(https:|http:)?)(//?[-a-zA-Z!@#$%^&*.,_;/0-9:]+)",
                 Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(html);
-        while(matcher.find()) {
-            linksList.add(matcher.group(3));
+        while (matcher.find()) {
+            urlList.add(matcher.group(3));
         }
 
-        for (String s : linksList) {
+        Pattern urlRegex = Pattern.compile("(https:|http:)(//[a-zA-Z0-9./_-]+)");
+        Matcher urlMatcher = urlRegex.matcher(url);
+        urlMatcher.find();
+
+        String[] parsedUrls = new String[urlList.size()];
+        int index = 0;
+        for (String s : urlList) {
             if (s.startsWith("//")) {
-                System.out.println("https:" + s);
+                parsedUrls[index] = "https:" + s;
             } else if (s.startsWith("/")) {
-                System.out.println("https://elo" + s);
+                parsedUrls[index] = "https:" + urlMatcher.group(2) + s;
             }
+            index++;
         }
-        System.out.println(linksList.size());
-
-        return linksList;
+        return parsedUrls;
     }
 }

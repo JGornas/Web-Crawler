@@ -26,7 +26,14 @@ public class UrlPanel extends JPanel {
             String html = HtmlDownloader.download(url);
             htmlPanel.setTextArea(html);
             tagsPanel.setTitle(HtmlParser.getTitle(html));
-            HtmlParser.getLinks(html, url);
+
+            String[] urls = HtmlParser.getUrls(html, url);
+            for (String _url : urls) {
+                String _html = HtmlDownloader.download(_url);
+                if (_html.startsWith("text/html")) {
+                    System.out.println(_url + " - " + HtmlParser.getTitle(_html));
+                }
+            }
         });
         add(button);
     }
