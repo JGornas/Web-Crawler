@@ -2,7 +2,7 @@ package crawler;
 
 /**
  * @author JGornas
- * @version 0.3
+ * @version 0.4
  *
  * Main method of Web Crawler app.
  */
