@@ -31,12 +31,12 @@ public class TablePanel extends JPanel {
     }
 
     public void updateTable(String[] urls) {
+        tableModel.setRowCount(0);
         List<String[]> parsedUrlsList = new ArrayList<>();
         for (String _url : urls) {
             String _html = HtmlDownloader.download(_url);
             if (_html.startsWith("text/html")) {
-                String[] parsedUrl = new String[]{_url, HtmlParser.getTitle(_html)};
-                parsedUrlsList.add(parsedUrl);
+                parsedUrlsList.add(new String[] {_url, HtmlParser.getTitle(_html)});
             }
         }
         for (String[] pair : parsedUrlsList) {
@@ -44,11 +44,9 @@ public class TablePanel extends JPanel {
                 System.out.println(element);
             }
         }
-
         for (String[] strings : parsedUrlsList) {
-            tableModel.addRow(new String[]{strings[0], strings[1]});
+            tableModel.addRow(new String[] {strings[0], strings[1]});
         }
         table.repaint();
-
     }
 }
