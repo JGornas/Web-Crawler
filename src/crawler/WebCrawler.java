@@ -30,8 +30,8 @@ public class WebCrawler extends JFrame {
         add(urlPanel);
         add(tagsPanel);
 
-        tabbedPane.addTab("HTML", null, htmlPanel, "Does nothing");
         tabbedPane.addTab("URLS", null, new JScrollPane(tablePanel), "Does nothing");
+        tabbedPane.addTab("HTML", null, htmlPanel, "Does nothing");
         add(tabbedPane);
 
 

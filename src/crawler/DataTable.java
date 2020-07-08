@@ -12,4 +12,8 @@ public class DataTable {
     public String[][] getTable() {
         return data;
     }
+
+    public String[][] getData() {
+        return null;
+    }
 }

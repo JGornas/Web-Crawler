@@ -8,29 +8,30 @@ public class TablePanel extends JPanel {
     String[] columnNames = {"Url", "Title"};
     public TablePanel(DataTable dataTable) {
         String[][] data = dataTable.getTable();
-        //JTable table = new JTable(data, columnNames);
         this.table = new JTable(data, columnNames);
         table.setName("TitlesTable");
-
         table.setSize(500, 200);
         table.setVisible(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         table.setRowHeight(20);
+        table.setEnabled(false);
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(250);
         columnModel.getColumn(1).setPreferredWidth(250);
-        add(table);
+        add(new JScrollPane(table));
     }
-    public void newTable(DataTable dataTable) {
-        this.table = new JTable(dataTable.getTable(), columnNames);
-        this.table.repaint();
-        table.setSize(500, 200);
-        //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        table.setRowHeight(20);
-        TableColumnModel columnModel = table.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(250);
-        columnModel.getColumn(1).setPreferredWidth(250);
 
-        add(table);
+    public void updateTable(String[] urls) {
+        String[][] data = new String[urls.length][2];
+        int index = 0;
+        for (String _url : urls) {
+            String _html = HtmlDownloader.download(_url);
+            if (_html.startsWith("text/html")) {
+                data[index][0] = _url;
+                data[index][1] = HtmlParser.getTitle(_html);
+                System.out.println(_url + " - " + HtmlParser.getTitle(_html));
+            }
+            index++;
+        }
     }
 }
