@@ -1,8 +1,6 @@
 package crawler;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,7 +22,8 @@ public class HtmlParser {
         }
     }
 
-    /** Parses all urls from a website.
+    /**
+     * Parses all urls from a website.
      *
      * @param html Html code string.
      * @param url Url from UrlPanel.

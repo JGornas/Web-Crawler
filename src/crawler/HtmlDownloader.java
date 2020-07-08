@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 public class HtmlDownloader {
     /**
-     * Downloads html code from given URL. Returns site's html code in a string.
+     * Downloads html code from given URL. Returns site's html code tagged at the front in a string.
      *
      * @param url  URL to download.
      */
