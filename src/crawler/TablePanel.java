@@ -44,8 +44,12 @@ public class TablePanel extends JPanel {
                 System.out.println(element);
             }
         }
-        for (String[] strings : parsedUrlsList) {
-            tableModel.addRow(new String[] {strings[0], strings[1]});
+        if (parsedUrlsList.size() == 0) {
+            tableModel.addRow(new String[] {"", ""});
+        } else {
+            for (String[] strings : parsedUrlsList) {
+                tableModel.addRow(new String[] {strings[0], strings[1]});
+            }
         }
         table.repaint();
     }
