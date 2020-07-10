@@ -17,19 +17,21 @@ public class WebCrawler extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 750);
         setLocationRelativeTo(null);
-        setLayout(new FlowLayout());
+        //setLayout(new FlowLayout());
 
         HtmlPanel htmlPanel = new HtmlPanel();
         TagsPanel tagsPanel = new TagsPanel();
         TablePanel tablePanel = new TablePanel();
+
         UrlPanel urlPanel = new UrlPanel(htmlPanel, tagsPanel, tablePanel);
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        add(urlPanel);
-        add(tagsPanel);
+        add(urlPanel, BorderLayout.NORTH);
+        add(tagsPanel, BorderLayout.CENTER);
+
         tabbedPane.addTab("URLS", new JScrollPane(tablePanel));
         tabbedPane.addTab("HTML", htmlPanel);
-        add(tabbedPane);
+        add(tabbedPane, BorderLayout.SOUTH);
 
         setVisible(true);
     }

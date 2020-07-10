@@ -1,17 +1,20 @@
 package crawler;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TablePanel extends JPanel {
 
-    JTable table;
+    final private JTable table;
     DefaultTableModel tableModel = new DefaultTableModel();
 
     public TablePanel() {
+        super(new BorderLayout());
         this.table = new JTable(tableModel);
         table.setName("TitlesTable");
         table.setSize(500, 500);
@@ -27,7 +30,7 @@ public class TablePanel extends JPanel {
         columnModel.getColumn(0).setPreferredWidth(250);
         columnModel.getColumn(1).setPreferredWidth(250);
 
-        add(new JScrollPane(table));
+        add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
     public void updateTable(String[] urls) {
