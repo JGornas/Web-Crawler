@@ -14,6 +14,7 @@ import java.awt.*;
 public class WebCrawler extends JFrame {
     public WebCrawler() {
         super("Web Crawler");
+        Logger.log("New log:");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 750);
         setLocationRelativeTo(null);
@@ -28,7 +29,6 @@ public class WebCrawler extends JFrame {
 
         add(urlPanel, BorderLayout.NORTH);
         add(tagsPanel, BorderLayout.CENTER);
-
         tabbedPane.addTab("URLS", new JScrollPane(tablePanel));
         tabbedPane.addTab("HTML", htmlPanel);
         add(tabbedPane, BorderLayout.SOUTH);
