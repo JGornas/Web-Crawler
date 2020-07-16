@@ -6,6 +6,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Swing panel (bottom) containing:
+ * JTable object with custom Table Model and a method to update it.
+ */
 public class TablePanel extends JPanel {
 
     final private JTable table;
@@ -28,6 +32,13 @@ public class TablePanel extends JPanel {
         add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
+    /**
+     * Redraw table from given data.
+     *
+     * @param url url from UrlPanel.
+     * @param title parsed title of that url.
+     * @param parsedUrls Array of strings with urls parsed from html code.
+     */
     public void updateTable(String url, String title, String[] parsedUrls) {
         this.urls.clear();
         this.titles.clear();

@@ -34,5 +34,4 @@ public class TablePanelTableModel extends AbstractTableModel {
     public String getColumnName(int columnIndex) {
         return headers[columnIndex];
     }
-
 }
