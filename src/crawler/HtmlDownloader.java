@@ -19,8 +19,8 @@ public class HtmlDownloader {
             URLConnection connection = new URL(url).openConnection();
             int responseCode = ((HttpURLConnection) connection).getResponseCode();
             if (responseCode != 404 || connection.getContentType().contains("text/html")) {
-                String html = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-                return "text/html" + html;
+                Logger.log("Downloading url: " + responseCode + " : " + url);
+                return new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
             }
         } catch (IOException | NullPointerException ignore) {}
 

@@ -1,6 +1,7 @@
 package crawler;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  * Swing panel (middle) containing:

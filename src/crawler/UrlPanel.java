@@ -10,7 +10,7 @@ import javax.swing.*;
 public class UrlPanel extends JPanel {
 
     JLabel urlLabel = new JLabel("URL:");
-    JTextField textField = new JTextField("https://wykop.pl");
+    JTextField textField = new JTextField();
     JButton button = new JButton("Parse");
 
     public UrlPanel(HtmlPanel htmlPanel, TagsPanel tagsPanel, TablePanel tablePanel) {
@@ -22,11 +22,14 @@ public class UrlPanel extends JPanel {
 
         button.setName("RunButton");
         button.addActionListener(e -> {
+            Logger.log("Next url... ");
             String url = textField.getText();
             String html = HtmlDownloader.download(url);
+            String title = HtmlParser.getTitle(html);
             htmlPanel.setTextArea(html);
-            tagsPanel.setTitle(HtmlParser.getTitle(html));
-            tablePanel.updateTable(HtmlParser.getUrls(html, url));
+            tagsPanel.setTitle(title);
+            Logger.log("Parsing urls... ");
+            tablePanel.updateTable(url, title, HtmlParser.getUrls(html, url));
         });
         add(button);
     }

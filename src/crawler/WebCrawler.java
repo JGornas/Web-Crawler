@@ -14,11 +14,11 @@ import java.awt.*;
 public class WebCrawler extends JFrame {
     public WebCrawler() {
         super("Web Crawler");
-        Logger.log("New log:");
+        Logger.log("\nNew log:");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(550, 750);
+        setSize(575, 700);
         setLocationRelativeTo(null);
-        //setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
 
         HtmlPanel htmlPanel = new HtmlPanel();
         TagsPanel tagsPanel = new TagsPanel();
@@ -27,8 +27,8 @@ public class WebCrawler extends JFrame {
         UrlPanel urlPanel = new UrlPanel(htmlPanel, tagsPanel, tablePanel);
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        add(urlPanel, BorderLayout.NORTH);
-        add(tagsPanel, BorderLayout.CENTER);
+        add(urlPanel, BorderLayout.PAGE_START);
+        add(tagsPanel);
         tabbedPane.addTab("URLS", new JScrollPane(tablePanel));
         tabbedPane.addTab("HTML", htmlPanel);
         add(tabbedPane, BorderLayout.SOUTH);

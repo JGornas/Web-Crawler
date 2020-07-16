@@ -1,9 +1,5 @@
 package crawler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -20,7 +16,9 @@ public class HtmlParser {
         Pattern pattern = Pattern.compile("(<title>)(.*)(</title>)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(html);
         if (matcher.find()) {
-            return matcher.group(2);
+            String match = matcher.group(2);
+            Logger.log("Parsed title: " + match);
+            return match;
         } else {
             return "No match found.";
         }
@@ -34,7 +32,6 @@ public class HtmlParser {
      * @return String array of parsed urls.
      */
     public static String[] getUrls(String html, String url) {
-        Logger.log("Website: " + url);
         Set<String> urlSet = new HashSet<>();
         Pattern pattern = Pattern.compile(
                 "(<a href=\"(https:|http:)?)(/?/?[-a-zA-Z!@#$%^&*.,_;/0-9:]+)",
@@ -50,18 +47,7 @@ public class HtmlParser {
 
         String[] parsedUrls = new String[urlSet.size()];
         int index = 0;
-        int newArrayLength = 0;
-
         for (String s : urlSet) {
-            //System.out.println(s);
-
-
-
-            if (s.equals("unavailablePage")) {
-                System.out.println("UNAVAILABLE");
-
-            }
-
             if (s.startsWith("//")) {
                 parsedUrls[index] = "https:" + s;
                 System.out.println(parsedUrls[index]);
@@ -69,34 +55,13 @@ public class HtmlParser {
                 parsedUrls[index] = "https:" + urlMatcher.group(2) + s;
                 System.out.println(parsedUrls[index]);
             } else {
-                System.out.println(s);
-                if (!s.equals("unavailablePage")) {
-                    parsedUrls[index] = "http://localhost:25555/" + s;
-                    System.out.println(parsedUrls[index]);
-                }
-            }
-
-
-            if (parsedUrls[index] == null) {
-                System.out.println("NULL FOUND");
-            } else {
-                newArrayLength++;
+                parsedUrls[index] = "http://localhost:25555/" + s; // to remove
             }
             index++;
         }
-
-        String[] newParsedUrls = new String[newArrayLength];
-        for (int i = 0; i < newArrayLength; i++) {
-            if (parsedUrls[i] != null) {
-                newParsedUrls[i] = parsedUrls[i];
-            }
+        if (parsedUrls.length == 0) {
+            Logger.log("No urls found.");
         }
-        for (String element : newParsedUrls) {
-            Logger.log("Parsed url: " + element);
-        }
-        if (newParsedUrls.length == 0) {
-            Logger.log("No parsed links");
-        }
-        return newParsedUrls;
+        return parsedUrls;
     }
 }

@@ -13,10 +13,10 @@ public class HtmlPanel extends JPanel {
     JTextArea textArea = new JTextArea();
 
     public HtmlPanel() {
+        super(new BorderLayout());
         textArea.setColumns(45);
         textArea.setRows(35);
         textArea.setName("HtmlTextArea");
-        //textArea.setEnabled(false);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         textArea.setDisabledTextColor(Color.black);
