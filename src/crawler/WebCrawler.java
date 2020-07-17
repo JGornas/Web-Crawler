@@ -16,23 +16,34 @@ public class WebCrawler extends JFrame {
         super("Web Crawler");
         Logger.log("\nNew log:");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(575, 700);
+        setSize(575, 730);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+
+        JPanel top = new JPanel();
+        top.setLayout(new BorderLayout());
+        JPanel bottom = new JPanel();
+        bottom.setLayout(new BorderLayout());
 
         HtmlPanel htmlPanel = new HtmlPanel();
         TagsPanel tagsPanel = new TagsPanel();
         TablePanel tablePanel = new TablePanel();
 
+        ExportPanel exportPanel = new ExportPanel(tablePanel);
         UrlPanel urlPanel = new UrlPanel(htmlPanel, tagsPanel, tablePanel);
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        add(urlPanel, BorderLayout.PAGE_START);
-        add(tagsPanel);
         tabbedPane.addTab("URLS", new JScrollPane(tablePanel));
         tabbedPane.addTab("HTML", htmlPanel);
-        add(tabbedPane, BorderLayout.SOUTH);
 
+        top.add(urlPanel, BorderLayout.NORTH);
+        top.add(tagsPanel, BorderLayout.CENTER);
+        top.add(tabbedPane, BorderLayout.SOUTH);
+
+        bottom.add(exportPanel, BorderLayout.CENTER);
+
+        add(top, BorderLayout.NORTH);
+        add(bottom, BorderLayout.SOUTH);
         setVisible(true);
     }
 }

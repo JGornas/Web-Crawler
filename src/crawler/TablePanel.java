@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Swing panel (bottom) containing:
+ * Swing panel (middle) containing:
  * JTable object with custom Table Model and a method to update it.
  */
 public class TablePanel extends JPanel {
@@ -52,5 +52,12 @@ public class TablePanel extends JPanel {
             }
         }
         newTableModel.fireTableDataChanged();
+    }
+
+    public List<String> getUrls() {
+        return this.urls;
+    }
+    public List<String> getTitles() {
+        return this.titles;
     }
 }

@@ -9,7 +9,7 @@ public class Logger {
         try (FileWriter writer = new FileWriter(new File("log.txt"), true)) {
             writer.write(message + "\n");
         } catch (IOException e) {
-            System.err.print("Something went wrong");
+            System.err.print("Something went wrong logging!");
         }
     }
 }
