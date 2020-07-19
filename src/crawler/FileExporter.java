@@ -19,6 +19,9 @@ public class FileExporter {
                 writer.write(urls.get(i) + "\n");
                 writer.write(titles.get(i) + "\n");
             }
+            String successMessage = "Exported data to a file: " + filename;
+            System.out.println(successMessage);
+            Logger.log(successMessage);
         } catch (IOException e) {
             System.err.println("Something went wrong exporting!");
         }

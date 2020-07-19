@@ -40,10 +40,10 @@ public class WebCrawler extends JFrame {
         top.add(tagsPanel, BorderLayout.CENTER);
         top.add(tabbedPane, BorderLayout.SOUTH);
 
-        bottom.add(exportPanel, BorderLayout.CENTER);
+        bottom.add(exportPanel, BorderLayout.NORTH);
 
         add(top, BorderLayout.NORTH);
-        add(bottom, BorderLayout.SOUTH);
+        add(bottom, BorderLayout.CENTER);
         setVisible(true);
     }
 }
