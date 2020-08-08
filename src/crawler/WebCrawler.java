@@ -6,10 +6,11 @@ import java.awt.*;
 /**
  * Main Frame,  contains:
  * JFrame init with size, location and layout.
- * Tabbed pane with html and table panels.
- * HtmlPanel with large text area for html display.
  * UrlPanel with text field and a button for entering URL.
- * TablePanel for displaying parsed urls.
+ * Tabbed pane with urls table, html viewer and options panel.
+ * HtmlPanel consists of large text area for html display.
+ * TablePanel consists of a table of parsed urls.
+ * Options panel contains: TODO : options panel, multithreading
  */
 public class WebCrawler extends JFrame {
     public WebCrawler() {
@@ -29,11 +30,14 @@ public class WebCrawler extends JFrame {
         TagsPanel tagsPanel = new TagsPanel();
         TablePanel tablePanel = new TablePanel();
 
+        JPanel optionsPanel = new JPanel();
+
         ExportPanel exportPanel = new ExportPanel(tablePanel);
         UrlPanel urlPanel = new UrlPanel(htmlPanel, tagsPanel, tablePanel);
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        tabbedPane.addTab("URLS", new JScrollPane(tablePanel));
+        tabbedPane.addTab("Options", optionsPanel);
+        tabbedPane.addTab("Urls", new JScrollPane(tablePanel));
         tabbedPane.addTab("HTML", htmlPanel);
 
         top.add(urlPanel, BorderLayout.NORTH);
