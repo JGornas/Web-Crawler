@@ -2,6 +2,8 @@ package crawler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Main Frame,  contains:
@@ -21,6 +23,17 @@ public class WebCrawler extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        System.out.println("Main frame Thread is dispatch: " + SwingUtilities.isEventDispatchThread());
+
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+                System.exit(0);
+            }
+        });
+
         JPanel top = new JPanel();
         top.setLayout(new BorderLayout());
         JPanel bottom = new JPanel();
@@ -30,7 +43,7 @@ public class WebCrawler extends JFrame {
         TagsPanel tagsPanel = new TagsPanel();
         TablePanel tablePanel = new TablePanel();
 
-        JPanel optionsPanel = new JPanel();
+        OptionsPanel optionsPanel = new OptionsPanel();
 
         ExportPanel exportPanel = new ExportPanel(tablePanel);
         UrlPanel urlPanel = new UrlPanel(htmlPanel, tagsPanel, tablePanel);

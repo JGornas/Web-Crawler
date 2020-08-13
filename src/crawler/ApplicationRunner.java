@@ -1,5 +1,7 @@
 package crawler;
 
+import javax.swing.*;
+
 /**
  * @author JGornas
  * @version 0.4
@@ -8,6 +10,19 @@ package crawler;
  */
 public class ApplicationRunner {
     public static void main(String[] args) {
-        new WebCrawler();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new WebCrawler();
+            }
+        });
+        System.out.println("Initial Thread is dispatch: " + SwingUtilities.isEventDispatchThread());
+
+
+        // OR
+        // SwingUtilities.invokeLater(() -> new WebCrawler());
+        // OR (best one)
+        // SwingUtilities.invokeLater(WebCrawler::new);
+
+
     }
 }

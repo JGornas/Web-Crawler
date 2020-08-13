@@ -11,7 +11,8 @@ public class UrlPanel extends JPanel {
 
     JLabel urlLabel = new JLabel("URL:");
     JTextField textField = new JTextField();
-    JButton button = new JButton("Parse");
+    JToggleButton button = new JToggleButton("Parse");
+    boolean isPressed = false;
 
     public UrlPanel(HtmlPanel htmlPanel, TagsPanel tagsPanel, TablePanel tablePanel) {
         add(urlLabel);
@@ -21,16 +22,15 @@ public class UrlPanel extends JPanel {
         add(textField);
 
         button.setName("RunButton");
+        ActionWorker worker = new ActionWorker(htmlPanel, tagsPanel, tablePanel, textField);
         button.addActionListener(e -> {
-            Logger.log("Next url... ");
-            String url = textField.getText();
-            String html = HtmlDownloader.download(url);
-            String title = HtmlParser.getTitle(html);
-            htmlPanel.setTextArea(html);
-            tagsPanel.setTitle(title);
-            Logger.log("Parsing urls... ");
-            tablePanel.updateTable(url, title, HtmlParser.getUrls(html, url));
+            setPressed();
+            worker.startThread();
+            System.out.println(this.isPressed);
         });
         add(button);
+    }
+    void setPressed() {
+        this.isPressed = !this.isPressed;
     }
 }

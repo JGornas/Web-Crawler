@@ -1,7 +1,6 @@
 package crawler;
 
 import javax.swing.*;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +11,13 @@ import java.util.List;
  */
 public class TablePanel extends JPanel {
 
-    final private JTable table;
-
     private final List<String> urls = new ArrayList<>();
     private final List<String> titles = new ArrayList<>();
     private final TablePanelTableModel newTableModel = new TablePanelTableModel(urls, titles);
 
     public TablePanel() {
         super(new BorderLayout());
-        this.table = new JTable(newTableModel);
+        JTable table = new JTable(newTableModel);
 
         table.setName("TitlesTable");
         table.setSize(500, 500);
